@@ -9,9 +9,10 @@ import java.util.logging.Logger;
 
 public class JavaApplication8 {
      static ArrayList<Punct> puncte;
+     static int nrTotalPuncte;
+     static int nrPuncteTraseu;
 
     public static void main(String[] args) {
-        int nrPuncte = 0;
         
         try {
             //citim datele din fisier
@@ -23,8 +24,8 @@ public class JavaApplication8 {
             //obtinem nr de puncte printr-un split al urmatoarei linii
             String linieCitita = scannerFisier.nextLine();
             String[] subsiruri = linieCitita.split(":");
-            nrPuncte = Integer.parseInt(subsiruri[1].trim());
-            System.out.println(nrPuncte);
+            nrTotalPuncte = Integer.parseInt(subsiruri[1].trim());
+            System.out.println(nrTotalPuncte);
 
             for (int i = 0; i < 3; i++) {
                 scannerFisier.nextLine();
@@ -33,7 +34,7 @@ public class JavaApplication8 {
             //citim punctele
             puncte = new ArrayList();
             
-            for(int i = 0; i < nrPuncte; i++){
+            for(int i = 0; i < nrTotalPuncte; i++){
                 int nrOrdine = scannerFisier.nextInt();
                 int x = scannerFisier.nextInt();
                 int y = scannerFisier.nextInt();
@@ -50,12 +51,13 @@ public class JavaApplication8 {
         Scanner scanner = new Scanner(System.in);
         int p = scanner.nextInt();
         System.out.println(p);
-         
-        int n = nrPuncte*p/100;
-        System.out.println(n);
+        
+        //nrPuncteTraseu = n
+        //nrTotalPuncte = x
+        nrPuncteTraseu = nrTotalPuncte*p/100;
+        System.out.println(nrPuncteTraseu);
  
-        AlgoritmGenetic algoritmGenetic = new AlgoritmGenetic();
-        algoritmGenetic.setup(100, 200, 5);
+        AlgoritmGenetic algoritmGenetic = new AlgoritmGenetic(100, 200, 5);
         algoritmGenetic.start();
          
     }

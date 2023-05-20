@@ -5,7 +5,7 @@
  */
 package javaapplication8;
 
-import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -13,38 +13,36 @@ import java.util.ArrayList;
  */
 public class AlgoritmGenetic {
 
-    private int nrMaxGeneratii;
-    private int dimPopulatieInitiala;
-    private int rataMutatie;
+    private final int nrMaxGeneratii;
+    private final int dimPopulatie;
+    private final int rataMutatie;
     private Populatie populatie;
 
-    public AlgoritmGenetic() {
-        populatie = new Populatie();
-    }
+    static Random random = new Random();
 
-    public void setup(int nrMaxGeneratii, int dimPopulatieInitiala,
-            int rataMutatie) {
+    public AlgoritmGenetic(int nrMaxGeneratii, int dimPopulatie, int rataMutatie) {
         this.nrMaxGeneratii = nrMaxGeneratii;
         this.rataMutatie = rataMutatie;
-        this.dimPopulatieInitiala = dimPopulatieInitiala;
+        this.dimPopulatie = dimPopulatie;
+        populatie = new Populatie(dimPopulatie);
     }
 
     public void start() {
         //initializare populatie random
         populatie.initRandom();
 
-        for(int i = 0; i < nrMaxGeneratii; i++) {
+        for (int i = 0; i < nrMaxGeneratii; i++) {
             populatie.calculeazaFitness();
             //selectie
-            Populatie populatieNoua = populatie.selectie();
+            Populatie populatieParinti = populatie.selectie();
             //recombinare
-            populatieNoua.recombinare();
+            Populatie populatieCopii = populatieParinti.recombinare();
             //mutatie
-            populatieNoua.mutatie(rataMutatie);
+            populatieCopii.mutatie(rataMutatie);
             //copiii devin parinti in urmatoarea generatie
-            populatie = populatieNoua;
+            populatie = populatieCopii;
         }
-        
+
         //la ult
         populatie.calculeazaFitness();
     }
