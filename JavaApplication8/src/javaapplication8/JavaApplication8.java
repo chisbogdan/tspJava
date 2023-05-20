@@ -25,7 +25,7 @@ public class JavaApplication8 {
             String linieCitita = scannerFisier.nextLine();
             String[] subsiruri = linieCitita.split(":");
             nrTotalPuncte = Integer.parseInt(subsiruri[1].trim());
-            System.out.println(nrTotalPuncte);
+            System.out.println("x: " + nrTotalPuncte);
 
             for (int i = 0; i < 3; i++) {
                 scannerFisier.nextLine();
@@ -50,16 +50,16 @@ public class JavaApplication8 {
         //citim p de la tastatura
         Scanner scanner = new Scanner(System.in);
         int p = scanner.nextInt();
-        System.out.println(p);
+        System.out.println("p: " + p);
         
         //nrPuncteTraseu = n
         //nrTotalPuncte = x
         nrPuncteTraseu = nrTotalPuncte*p/100;
-        System.out.println(nrPuncteTraseu);
+        System.out.println("n: " + nrPuncteTraseu);
  
         AlgoritmGenetic algoritmGenetic = new AlgoritmGenetic(100, 200, 5);
-        algoritmGenetic.start();
-         
+        Individ solutie = algoritmGenetic.start();
+        solutie.afiseaza();
     }
 
 }

@@ -39,9 +39,9 @@ public class Populatie {
         Populatie populatieParinti = new Populatie(2*dimPopulatie);
         
         for(int i = 0; i < 2*dimPopulatie; i++){
-            int indexCandidat1 = AlgoritmGenetic.random.nextInt(JavaApplication8.nrPuncteTraseu);
-            int indexCandidat2 = AlgoritmGenetic.random.nextInt(JavaApplication8.nrPuncteTraseu);
-            
+            int indexCandidat1 = AlgoritmGenetic.random.nextInt(dimPopulatie);
+            int indexCandidat2 = AlgoritmGenetic.random.nextInt(dimPopulatie);
+ 
             Individ candidat1 = solutii.get(indexCandidat1);
             Individ candidat2 = solutii.get(indexCandidat2);
             
@@ -68,7 +68,7 @@ public class Populatie {
             Individ parinte2 = solutii.get(2*i + 1);
             Individ copil = new Individ();
             
-            int indexTaietura = AlgoritmGenetic.random.nextInt();
+            int indexTaietura = AlgoritmGenetic.random.nextInt(JavaApplication8.nrPuncteTraseu);
             
             //copiem genele primului parinte
             for(int j = 0; j < indexTaietura; j++){
@@ -82,6 +82,7 @@ public class Populatie {
                 }
             }
             
+            populatieCopii.solutii.add(copil);
         }
         
         return populatieCopii;

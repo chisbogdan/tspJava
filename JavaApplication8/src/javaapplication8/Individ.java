@@ -52,4 +52,10 @@ public class Individ {
         return (int) Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     }
 
+    public void afiseaza(){
+        for(Punct p: traseu){
+            System.out.print(p.nrOrdine + " ");
+        }
+        System.out.println(traseu.get(0).nrOrdine + " fitness: " + distantaTotala);
+    }
 }
