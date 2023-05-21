@@ -21,7 +21,7 @@ public class JavaApplication8 {
         System.out.println("Tastati numele fisierului de intrare(fără extensie):");
         Scanner scanner = new Scanner(System.in);
         //String numeFisier = scanner.nextLine();
-        String numeFisier = "11eil51";
+        String numeFisier = "64lin318";
         System.out.println("Nume fisier intrare: " + numeFisier + ".gtsp");
         
         try {
@@ -73,7 +73,7 @@ public class JavaApplication8 {
         System.out.println("n: " + nrPuncteTraseu);
 
         //nrMinGeneratii, dimPopulatie, rataMutatieMica, rataMutatieMare, delta, deltaMutatie
-        AlgoritmGenetic algoritmGenetic = new AlgoritmGenetic(50, 100, 5, 7, 50, 20);
+        AlgoritmGenetic algoritmGenetic = new AlgoritmGenetic(Integer.MAX_VALUE, 100, 5, 7, 50, 20);
         Individ solutie = algoritmGenetic.start();
         solutie.afiseaza();
 

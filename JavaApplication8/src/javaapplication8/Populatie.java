@@ -59,7 +59,7 @@ public class Populatie {
 
         return populatieParinti;
     }
-
+/*
     Populatie selectieRuleta() {
         Populatie populatieParinti = new Populatie(2 * dimPopulatie);
         
@@ -127,7 +127,7 @@ public class Populatie {
         // Suma totala a valorilor fitness poate fi 9.99998 din cauza aproximarilor
         return dimPopulatie - 1;
     }
-
+*/
     public Populatie recombinare() {
         //copiii rezulta in urma recombinarii populatiei de parinti
         //care este de doua ori mai numeroasa decat populatia din care s-au
@@ -163,7 +163,7 @@ public class Populatie {
 
         return populatieCopii;
     }
-
+/*
     public Populatie recombinare2() {
 
         Populatie populatieCopii = new Populatie(dimPopulatie / 2);
@@ -211,7 +211,7 @@ public class Populatie {
 
         return populatieCopii;
     }
-
+*/
     public void mutatie(int rataMutatie) {
         int nr;
         int indexPunctRandom;

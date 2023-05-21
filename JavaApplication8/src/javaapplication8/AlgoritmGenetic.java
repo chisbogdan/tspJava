@@ -45,33 +45,23 @@ public class AlgoritmGenetic {
     }
 
     public Individ start() {
+        long tStart = System.nanoTime();
         //initializare populatie random
         populatie.initRandom();
         populatie.calculeazaDistanteTotale();
         actualizeazaSolutie(0);
         int deltaGeneratii = 0;
-        int nrRandom;
-        
+        //int nrRandom;
+
         Populatie populatieParinti;
         Populatie populatieCopii;
         for (int nrGeneratie = 1; (nrGeneratie <= nrMinGeneratii) | (delta > deltaGeneratii); nrGeneratie++) {
             //selectie
-            nrRandom = random.nextInt(100);
-            if(nrRandom < 100){
-                populatieParinti = populatie.selectieTurneu();
-            }
-            else{
-                populatieParinti = populatie.selectieRuleta();
-            }
-            
+            populatieParinti = populatie.selectieTurneu();
+
             //recombinare
-            nrRandom = random.nextInt(100);
-            if(nrRandom < 100){
-                populatieCopii = populatieParinti.recombinare();
-            }
-            else{
-                populatieCopii = populatieParinti.recombinare2();
-            }
+            populatieCopii = populatieParinti.recombinare();
+
             //mutatie
             actualizeazaRataMutatie(deltaGeneratii);
             populatieCopii.mutatie(rataMutatie);
@@ -82,6 +72,11 @@ public class AlgoritmGenetic {
             //verificam daca am gasit o solutie mai buna
             actualizeazaSolutie(nrGeneratie);
             deltaGeneratii = nrGeneratie - generatieSolutie;
+            
+            if((System.nanoTime() - tStart) > 5000000000L){
+                System.out.println("oprire din cauza timpului");
+                break;
+            }
         }
         System.out.println("Generatia din care face parte solutia: " + generatieSolutie);
         return solutie;
@@ -99,8 +94,7 @@ public class AlgoritmGenetic {
     private void actualizeazaRataMutatie(int deltaGeneratii) {
         if (deltaGeneratii >= deltaMutatie) {
             rataMutatie = rataMutatieMare;
-        }
-        else{
+        } else {
             rataMutatie = rataMutatieMica;
         }
     }
