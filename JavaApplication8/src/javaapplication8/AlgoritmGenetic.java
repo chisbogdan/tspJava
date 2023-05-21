@@ -1,26 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package javaapplication8;
 
 import java.util.Random;
 
-/**
- *
- * @author User
- */
 public class AlgoritmGenetic {
 
-    private final int nrMinGeneratii;
+    private final long timpAdmis;
     private final int dimPopulatie;
 
     private int rataMutatie;
     private final int rataMutatieMica;
     private final int rataMutatieMare;
-
-    private final int delta;
     private final int deltaMutatie;
 
     private int generatieSolutie;
@@ -29,15 +18,14 @@ public class AlgoritmGenetic {
 
     static Random random = new Random();
 
-    public AlgoritmGenetic(int nrMinGeneratii, int dimPopulatie, int rataMutatieMica,
-            int rataMutatieMare, int delta, int deltaMutatie) {
+    public AlgoritmGenetic(long timpAdmis, int dimPopulatie, int rataMutatieMica,
+            int rataMutatieMare, int deltaMutatie) {
 
-        this.nrMinGeneratii = nrMinGeneratii;
+        this.timpAdmis = timpAdmis;
         this.rataMutatieMica = rataMutatieMica;
-        this.rataMutatie = rataMutatieMica;
+        rataMutatie = rataMutatieMica;
         this.rataMutatieMare = rataMutatieMare;
         this.dimPopulatie = dimPopulatie;
-        this.delta = delta;
         this.deltaMutatie = deltaMutatie;
         populatie = new Populatie(dimPopulatie);
         solutie = new Individ();
@@ -55,7 +43,8 @@ public class AlgoritmGenetic {
 
         Populatie populatieParinti;
         Populatie populatieCopii;
-        for (int nrGeneratie = 1; (nrGeneratie <= nrMinGeneratii) | (delta > deltaGeneratii); nrGeneratie++) {
+        int nrGeneratie;
+        for (nrGeneratie = 1; (System.nanoTime() - tStart) < timpAdmis; nrGeneratie++) {
             //selectie
             populatieParinti = populatie.selectieTurneu();
 
@@ -72,13 +61,10 @@ public class AlgoritmGenetic {
             //verificam daca am gasit o solutie mai buna
             actualizeazaSolutie(nrGeneratie);
             deltaGeneratii = nrGeneratie - generatieSolutie;
-            
-            if((System.nanoTime() - tStart) > 5000000000L){
-                System.out.println("oprire din cauza timpului");
-                break;
-            }
         }
-        System.out.println("Generatia din care face parte solutia: " + generatieSolutie);
+        
+        System.out.println("oprire\nNumar generatii: " + nrGeneratie
+                + "\nGeneratia din care face parte solutia: " + generatieSolutie);
         return solutie;
     }
 

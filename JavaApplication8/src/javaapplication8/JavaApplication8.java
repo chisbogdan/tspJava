@@ -20,15 +20,14 @@ public class JavaApplication8 {
 
         System.out.println("Tastati numele fisierului de intrare(fără extensie):");
         Scanner scanner = new Scanner(System.in);
-        //String numeFisier = scanner.nextLine();
-        String numeFisier = "64lin318";
+        String numeFisier = scanner.nextLine();
         System.out.println("Nume fisier intrare: " + numeFisier + ".gtsp");
         
         try {
             System.out.println("--- Date citite");
             
             //citim datele din fisier
-            Scanner scannerFisier = new Scanner(new File("./seturiTEST/" + numeFisier + ".gtsp"));
+            Scanner scannerFisier = new Scanner(new File("../seturiTEST/" + numeFisier + ".gtsp"));
             //ignoram primele 3 linii
             for (int i = 0; i < 3; i++) {
                 scannerFisier.nextLine();
@@ -63,8 +62,7 @@ public class JavaApplication8 {
 
         //citim p de la tastatura
         System.out.println("Tastati valoarea lui p:");
-        //int p = scanner.nextInt();
-        int p = 100;
+        int p = scanner.nextInt();
         System.out.println("p: " + p);
 
         //nrPuncteTraseu = n
@@ -72,21 +70,22 @@ public class JavaApplication8 {
         nrPuncteTraseu = nrTotalPuncte * p / 100;
         System.out.println("n: " + nrPuncteTraseu);
 
-        //nrMinGeneratii, dimPopulatie, rataMutatieMica, rataMutatieMare, delta, deltaMutatie
-        AlgoritmGenetic algoritmGenetic = new AlgoritmGenetic(Integer.MAX_VALUE, 100, 5, 7, 50, 20);
+        int secunde = 1;
+        long timpAdmis = (long) (secunde * Math.pow(10, 9));
+        //timp, dimPopulatie, rataMutatieMica, rataMutatieMare, deltaMutatie
+        AlgoritmGenetic algoritmGenetic = new AlgoritmGenetic(timpAdmis, 500, 0, 7, 20);
         Individ solutie = algoritmGenetic.start();
         solutie.afiseaza();
 
         try {
-            FileWriter fileWriter = new FileWriter(new File("./fisiereIesire/" + numeFisier + ".sol"));
+            FileWriter fileWriter = new FileWriter(new File("../fisiereIesire/" + numeFisier + ".sol"));
             PrintWriter printWriter = new PrintWriter(fileWriter);
-            // Writing text
             printWriter.println("--- Puncte vizitate");
             printWriter.println(nrPuncteTraseu);
             printWriter.println("--- Ordinea de vizitare");
-            for(Punct punct: solutie.traseu){
+            solutie.traseu.forEach((punct) -> {
                 printWriter.print(punct.nrOrdine + ",");
-            }
+            });
             printWriter.println(solutie.traseu.get(0).nrOrdine);
             printWriter.println("--- Distanța totală calculată");
             printWriter.println(solutie.distantaTotala);
