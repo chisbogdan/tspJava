@@ -49,13 +49,13 @@ public class Individ {
     private int calculeazaDistanta(int x1, int y1, int x2, int y2) {
         int deltaX = x2 - x1;
         int deltaY = y2 - y1;
-        return (int) Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        return (int) (Math.sqrt(deltaX * deltaX + deltaY * deltaY) + 0.5);
     }
 
     public void afiseaza(){
-        for(Punct p: traseu){
+        traseu.forEach((p) -> {
             System.out.print(p.nrOrdine + " ");
-        }
+        });
         System.out.println(traseu.get(0).nrOrdine + " fitness: " + distantaTotala);
     }
 }

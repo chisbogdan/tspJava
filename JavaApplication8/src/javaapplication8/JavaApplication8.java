@@ -18,9 +18,15 @@ public class JavaApplication8 {
 
     public static void main(String[] args) {
 
+        System.out.println("Tastati numele fisierului de intrare(fără extensie):");
+        Scanner scanner = new Scanner(System.in);
+        //String numeFisier = scanner.nextLine();
         String numeFisier = "11eil51";
+        System.out.println("Nume fisier intrare: " + numeFisier + ".gtsp");
         
         try {
+            System.out.println("--- Date citite");
+            
             //citim datele din fisier
             Scanner scannerFisier = new Scanner(new File("./seturiTEST/" + numeFisier + ".gtsp"));
             //ignoram primele 3 linii
@@ -48,14 +54,17 @@ public class JavaApplication8 {
                 puncte.add(new Punct(nrOrdine, x, y));
                 System.out.println(nrOrdine + " " + x + " " + y);
             }
+            
+            System.out.println("--- Sfarsit");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(JavaApplication8.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Eroare citire fisier");
         }
 
         //citim p de la tastatura
-        Scanner scanner = new Scanner(System.in);
-        int p = scanner.nextInt();
+        System.out.println("Tastati valoarea lui p:");
+        //int p = scanner.nextInt();
+        int p = 100;
         System.out.println("p: " + p);
 
         //nrPuncteTraseu = n
@@ -63,7 +72,8 @@ public class JavaApplication8 {
         nrPuncteTraseu = nrTotalPuncte * p / 100;
         System.out.println("n: " + nrPuncteTraseu);
 
-        AlgoritmGenetic algoritmGenetic = new AlgoritmGenetic(100, 200, 5);
+        //nrMinGeneratii, dimPopulatie, rataMutatieMica, rataMutatieMare, delta, deltaMutatie
+        AlgoritmGenetic algoritmGenetic = new AlgoritmGenetic(100, 200, 5, 7, 50, 20);
         Individ solutie = algoritmGenetic.start();
         solutie.afiseaza();
 

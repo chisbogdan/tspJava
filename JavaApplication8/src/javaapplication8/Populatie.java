@@ -30,9 +30,9 @@ public class Populatie {
     }
 
     public void calculeazaFitness() {
-        for (Individ i : solutii) {
+        solutii.forEach((i) -> {
             i.calculeazaFitness();
-        }
+        });
     }
 
     public Populatie selectie() {
@@ -80,7 +80,7 @@ public class Populatie {
                 copil.traseu.add(parinte1.traseu.get(j));
             }
 
-            for (j = 0, k = 0; (k < (JavaApplication8.nrPuncteTraseu - indexTaietura)) | (j < JavaApplication8.nrPuncteTraseu); j++) {
+            for (j = 0, k = 0; k < (JavaApplication8.nrPuncteTraseu - indexTaietura); j++) {
                 Punct p = parinte2.traseu.get(j);
                 if (!copil.traseu.contains(p)) {
                     copil.traseu.add(p);
