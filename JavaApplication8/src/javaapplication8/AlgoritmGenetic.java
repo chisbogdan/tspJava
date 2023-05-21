@@ -47,23 +47,38 @@ public class AlgoritmGenetic {
     public Individ start() {
         //initializare populatie random
         populatie.initRandom();
-        populatie.calculeazaFitness();
+        populatie.calculeazaDistanteTotale();
         actualizeazaSolutie(0);
         int deltaGeneratii = 0;
-
+        int nrRandom;
+        
+        Populatie populatieParinti;
+        Populatie populatieCopii;
         for (int nrGeneratie = 1; (nrGeneratie <= nrMinGeneratii) | (delta > deltaGeneratii); nrGeneratie++) {
             //selectie
-            Populatie populatieParinti = populatie.selectie();
+            nrRandom = random.nextInt(100);
+            if(nrRandom < 100){
+                populatieParinti = populatie.selectieTurneu();
+            }
+            else{
+                populatieParinti = populatie.selectieRuleta();
+            }
+            
             //recombinare
-            Populatie populatieCopii = populatieParinti.recombinare();
+            nrRandom = random.nextInt(100);
+            if(nrRandom < 100){
+                populatieCopii = populatieParinti.recombinare();
+            }
+            else{
+                populatieCopii = populatieParinti.recombinare2();
+            }
             //mutatie
             actualizeazaRataMutatie(deltaGeneratii);
             populatieCopii.mutatie(rataMutatie);
 
             //copiii devin parinti in urmatoarea generatie
             populatie = populatieCopii;
-            populatie.calculeazaFitness();
-            //System.out.println(nrGeneratie + " " + deltaGeneratii + " " + rataMutatie+"");
+            populatie.calculeazaDistanteTotale();
             //verificam daca am gasit o solutie mai buna
             actualizeazaSolutie(nrGeneratie);
             deltaGeneratii = nrGeneratie - generatieSolutie;

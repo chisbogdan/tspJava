@@ -33,20 +33,20 @@ public class Individ {
         }
     }
 
-    public void calculeazaFitness() {
+    public void calculeazaDistantaTotala() {
         // distanta = 0;
         for (int i = 1; i < JavaApplication8.nrPuncteTraseu; i++) {
-            distantaTotala += calculeazaDistanta(traseu.get(i - 1).x, traseu.get(i - 1).y,
+            distantaTotala += calculeazaDistantaEuclidiana(traseu.get(i - 1).x, traseu.get(i - 1).y,
                     traseu.get(i).x, traseu.get(i).y);
         }
 
         //adaugam distanta de la ultimul pct spre primul
-        distantaTotala += calculeazaDistanta(traseu.get(JavaApplication8.nrPuncteTraseu - 1).x,
+        distantaTotala += calculeazaDistantaEuclidiana(traseu.get(JavaApplication8.nrPuncteTraseu - 1).x,
                 traseu.get(JavaApplication8.nrPuncteTraseu - 1).y,
                 traseu.get(0).x, traseu.get(0).y);
     }
 
-    private int calculeazaDistanta(int x1, int y1, int x2, int y2) {
+    private int calculeazaDistantaEuclidiana(int x1, int y1, int x2, int y2) {
         int deltaX = x2 - x1;
         int deltaY = y2 - y1;
         return (int) (Math.sqrt(deltaX * deltaX + deltaY * deltaY) + 0.5);
@@ -56,6 +56,6 @@ public class Individ {
         traseu.forEach((p) -> {
             System.out.print(p.nrOrdine + " ");
         });
-        System.out.println(traseu.get(0).nrOrdine + " fitness: " + distantaTotala);
+        System.out.println(traseu.get(0).nrOrdine + " distantaTotala: " + distantaTotala);
     }
 }

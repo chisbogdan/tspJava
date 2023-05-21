@@ -73,7 +73,7 @@ public class JavaApplication8 {
         System.out.println("n: " + nrPuncteTraseu);
 
         //nrMinGeneratii, dimPopulatie, rataMutatieMica, rataMutatieMare, delta, deltaMutatie
-        AlgoritmGenetic algoritmGenetic = new AlgoritmGenetic(100, 200, 5, 7, 50, 20);
+        AlgoritmGenetic algoritmGenetic = new AlgoritmGenetic(50, 100, 5, 7, 50, 20);
         Individ solutie = algoritmGenetic.start();
         solutie.afiseaza();
 
