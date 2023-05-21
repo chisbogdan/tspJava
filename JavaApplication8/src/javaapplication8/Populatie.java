@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package javaapplication8;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author User
- */
 public class Populatie {
 
     private final int dimPopulatie;
@@ -36,13 +27,14 @@ public class Populatie {
     }
 
     public Populatie selectieTurneu() {
-        Populatie populatieParinti = new Populatie(2 * dimPopulatie);
+        int dimPopulatieNoua = dimPopulatie * 2;
+        Populatie populatieParinti = new Populatie(dimPopulatieNoua);
         int indexCandidat1;
         int indexCandidat2;
         Individ candidat1;
         Individ candidat2;
 
-        for (int i = 0; i < 2 * dimPopulatie; i++) {
+        for (int i = 0; i < dimPopulatieNoua; i++) {
 
             indexCandidat1 = AlgoritmGenetic.random.nextInt(dimPopulatie);
             indexCandidat2 = AlgoritmGenetic.random.nextInt(dimPopulatie);
@@ -132,15 +124,16 @@ public class Populatie {
         //copiii rezulta in urma recombinarii populatiei de parinti
         //care este de doua ori mai numeroasa decat populatia din care s-au
         //selectat parintii
-        Populatie populatieCopii = new Populatie(dimPopulatie / 2);
-        int indexTaietura, j, k;
+        int dimPopulatieNoua = dimPopulatie / 2;
+        Populatie populatieCopii = new Populatie(dimPopulatieNoua);
+        int indexTaietura, j, k, index;
         Individ parinte1, parinte2, copil;
         Punct p;
 
-        for (int i = 0; i < dimPopulatie / 2; i++) {
-
-            parinte1 = solutii.get(2 * i);
-            parinte2 = solutii.get(2 * i + 1);
+        for (int i = 0; i < dimPopulatieNoua; i++) {
+            index = 2*i;
+            parinte1 = solutii.get(index);
+            parinte2 = solutii.get(index + 1);
             copil = new Individ();
 
             indexTaietura = AlgoritmGenetic.random.nextInt(JavaApplication8.nrPuncteTraseu);
