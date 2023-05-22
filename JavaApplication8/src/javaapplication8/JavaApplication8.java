@@ -70,9 +70,9 @@ public class JavaApplication8 {
         nrPuncteTraseu = nrTotalPuncte * p / 100;
         System.out.println("n: " + nrPuncteTraseu);
 
-        long timpAdmis = (long) (60 * Math.pow(10, 9));
+        long timpAdmis = (long) (2 * Math.pow(10, 9));
         //timp, dimPopulatie, rataMutatieMica, rataMutatieMare, deltaMutatie
-        AlgoritmGenetic algoritmGenetic = new AlgoritmGenetic(timpAdmis, 500, 0, 7, 20);
+        AlgoritmGenetic algoritmGenetic = new AlgoritmGenetic(timpAdmis, 500, 0, 5, 20);
         Individ solutie = algoritmGenetic.start();
         solutie.afiseaza();
 
